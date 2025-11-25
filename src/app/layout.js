@@ -3,8 +3,7 @@ import "./globals.css";
 import NavBar from "./Components/Navbar";
 import Container from "./Components/Container";
 import Footer from "./Components/Footer";
-import SessionProvider from "next-auth/react"
-
+import SessionWrapper from "./Components/SessionWrapper";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -23,10 +22,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <SessionProvider>
+    
+        
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
+          <SessionWrapper>
           <Container>
             <NavBar />
           </Container>
@@ -35,8 +36,10 @@ export default function RootLayout({ children }) {
             <Container> {children} </Container>{" "}
           </div>
           <Footer></Footer>
+          </SessionWrapper>
         </body>
-      </SessionProvider>
+       
+    
     </html>
   );
 }
