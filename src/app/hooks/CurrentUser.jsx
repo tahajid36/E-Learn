@@ -11,4 +11,4 @@ export const CurrentUser = () => {
     return session?.user || null
 };
 
-export default CurrentUser;
+export default CurrentUser;  
