@@ -3,7 +3,7 @@ import CourseCard from './Card';
 const OurCourses = () => {
     const [courses, setCourses] = useState([])
 
-    fetch('https://elearn-server-three.vercel.app/courses')
+    fetch('https://elearn-server-sepia.vercel.app/courses')
     .then(res=> res.json())
     .then(data => setCourses(data))
     const courseData = courses.slice(0,4)

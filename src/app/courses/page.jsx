@@ -6,7 +6,7 @@ const Page = () => {
     const [courses, setCourses] = useState([])
 
     useEffect(()=>{
-        fetch('https://elearn-server-three.vercel.app/courses')
+        fetch('https://elearn-server-sepia.vercel.app/courses')
     .then(res=> res.json())
     .then(data => setCourses(data))
     
