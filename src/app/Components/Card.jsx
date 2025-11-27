@@ -1,14 +1,17 @@
 "use client";
 import React from "react";
 import { Calendar, Tag, DollarSign, ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-/**
- * Reusable Course Card Component
- * Designed for a dark blue/indigo theme.
- */
+
 export default function CourseCard({ course }) {
-  const { title, publishDate, price, period, imageUrl, description } = course;
+  const {_id, title, publishDate, price, period, imageUrl, description } = course;
   console.log(course);
+  const router = useRouter()
+  const handleDetails =() =>{
+    router.push(`/coursedetails/${_id}`)
+  }
 
   return (
     <div
@@ -48,6 +51,10 @@ export default function CourseCard({ course }) {
         </p>
 
         <button
+        
+        onClick={handleDetails}
+        
+        
           className="w-full inline-flex items-center justify-center px-4 py-3 border border-transparent text-sm font-medium rounded-lg shadow-lg text-white 
                                bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 transition duration-300"
         >

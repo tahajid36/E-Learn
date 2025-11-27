@@ -9,9 +9,9 @@ const Page = () => {
         fetch('https://elearn-server-sepia.vercel.app/courses')
     .then(res=> res.json())
     .then(data => setCourses(data))
+    // console.log(courses)
+    },[])
     
-    },[courses])
-    console.log(courses)
     return (
         <div>
             <div className='w-11/12 mx-auto mt-12 '>

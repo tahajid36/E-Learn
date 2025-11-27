@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CourseCard from './Card';
 const OurCourses = () => {
     const [courses, setCourses] = useState([])
 
-    fetch('https://elearn-server-sepia.vercel.app/courses')
+    useEffect(()=>{
+        fetch('https://elearn-server-sepia.vercel.app/courses')
     .then(res=> res.json())
     .then(data => setCourses(data))
+    },[])
     const courseData = courses.slice(0,4)
     return (
         <div className='w-11/12 mx-auto mt-12 '>
