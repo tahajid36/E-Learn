@@ -1,9 +1,30 @@
 'use client'
+import { signIn, useSession } from 'next-auth/react';
 import Link from 'next/link';
-import React from 'react';
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc'; 
+import Swal from 'sweetalert2';
 
-const page = () => {
+const Page = () => {
+const router = useRouter()
+const {data: session, status} = useSession()
+useEffect(()=>{
+  if(status === 'authenticated'){
+    Swal.fire({
+      title: 'Welcome Back!',
+      text: `You have successfully logged in!`,
+      icon: 'success',
+      timer: 2500,
+      timerProgressBar: true,
+      showConfirmButton: false,
+      background: '#1f2937', 
+      color: '#e5e7eb', 
+  }).then(()=>{
+    router.push('/')
+  })
+  }
+},[router, status])
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -18,6 +39,7 @@ const page = () => {
         </h2>
         
         <button 
+        onClick={()=> signIn('google')}
             className="w-full flex justify-center items-center py-3 px-4 rounded-xl shadow-lg text-sm font-medium text-white bg-slate-700 hover:bg-slate-600 transition duration-300 transform hover:scale-[1.01] space-x-2"
         >
             <FcGoogle className="w-5 h-5" />
@@ -77,4 +99,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default Page;

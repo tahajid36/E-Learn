@@ -2,10 +2,34 @@
 import Link from 'next/link';
 import { FcGoogle } from 'react-icons/fc'; 
 import { signIn, useSession } from 'next-auth/react';
-import CurrentUser from '../hooks/CurrentUser';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 
 const Page = () => {
-    const user = CurrentUser()
+  const router = useRouter()
+    const {data: session, status} = useSession()
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [error, setError] = useState('')
+
+    useEffect(()=>{
+      if(status === 'authenticated'){
+        Swal.fire({
+          title: 'Welcome Back!',
+          text: `You have successfully logged in!`,
+          icon: 'success',
+          timer: 2500,
+          timerProgressBar: true,
+          showConfirmButton: false,
+          background: '#1f2937', 
+          color: '#e5e7eb', 
+      }).then(()=>{
+        router.push('/')
+      })
+      }
+    },[router, status])
+    
     
 
     const handleSubmit = (e) => {
